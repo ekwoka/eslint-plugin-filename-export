@@ -9,7 +9,7 @@
   "sideEffects": false,
   "scripts": {
     "lint": "prettier --write .",
-    "test": "pnpm i -D ./ && eslint ./test/*.js"
+    "test": "pnpm i -D ./ && eslint ./test/* --ext .js --ext .ts --ext .tsx"
   },
   "keywords": [
     "ESLint",
