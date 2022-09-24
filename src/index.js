@@ -8,7 +8,7 @@ module.exports = {
           Program: function (node) {
             const filename = context.getFilename();
             const filenameSansExt = basename(filename, extname(filename)).toLowerCase();
-            if (['index', 'types'].includes(filenameSansExt) || /\.(test|spec)$/.test(filenameSansExt)) return;
+            if (['index', 'types'].includes(filenameSansExt) || /\.(test|spec|stories)$/.test(filenameSansExt)) return;
             const namedExports = node.body.filter((item) => item.type === 'ExportNamedDeclaration');
             if (!namedExports.length) return;
             const matchingExport = namedExports.find((item) => {
