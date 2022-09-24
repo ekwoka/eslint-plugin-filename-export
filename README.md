@@ -1,5 +1,4 @@
 [<img src="https://img.shields.io/npm/v/eslint-plugin-filename-export?style=for-the-badge">](https://www.npmjs.com/package/eslint-plugin-filename-export)
-<img src="https://img.shields.io/npm/types/eslint-plugin-filename-export?label=%20&amp;logo=typescript&amp;logoColor=white&amp;style=for-the-badge">
 <img src="https://img.shields.io/npm/dt/eslint-plugin-filename-export?style=for-the-badge" >
 [<img src="https://img.shields.io/bundlephobia/minzip/eslint-plugin-filename-export?style=for-the-badge">](https://bundlephobia.com/package/preact-heroicons)
 
