@@ -4,7 +4,7 @@
 
 # eslint-plugin-filename-export
 
-This plugin enforces that the filename matches to a named export. This rule ignores index files, and currently has no configuration options.
+This plugin enforces that the filename matches to a named export. This rule ignores index files, spec files, and files with no named exports, and currently has no configuration options.
 
 ## Installation
 
@@ -24,3 +24,13 @@ Add to your ESLint config:
   }
 }
 ```
+
+## Rules
+
+`filename-export/match-named-export` - Enforces that the filename matches to a named export.
+
+This rule ignores index files, test/spec files, and files that have no named exports.
+
+## Roadmap
+
+This plugin is mainly being produced for personal use. If you are interested in using it, but need additional features, please open an issue and I will consider adding them.

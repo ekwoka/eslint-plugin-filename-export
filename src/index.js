@@ -7,13 +7,13 @@ module.exports = {
         return {
           Program: function (node) {
             const filename = context.getFilename();
-            const filenameSansExt = basename(filename, extname(filename));
-            if (filenameSansExt.toLowerCase() === 'index') return;
-            const matchingExport = node.body.find((item) => {
-              if (item.type !== 'ExportNamedDeclaration') return false;
-              const name = item.declaration?.declarations?.[0]?.id?.name || '';
-              if (name.toLowerCase() === filenameSansExt.toLowerCase()) return true;
-              return false;
+            const filenameSansExt = basename(filename, extname(filename)).toLowerCase();
+            if (filenameSansExt === 'index' || /\.(test|spec)$/.test(filenameSansExt)) return;
+            const namedExports = node.body.filter((item) => item.type === 'ExportNamedDeclaration');
+            if (!namedExports.length) return;
+            const matchingExport = namedExports.find((item) => {
+              const name = item.declaration?.declarations?.[0]?.id?.name?.toLowerCase() || '';
+              return name === filenameSansExt;
             });
             if (!matchingExport) context.report(node, 'Filename does not match any exports');
           }
