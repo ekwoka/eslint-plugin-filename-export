@@ -1,0 +1,34 @@
+{
+  "name": "eslint-plugin-filename-export",
+  "version": "0.0.1",
+  "description": "ESLint plugin that ensures non-index filenames match to at least one named export.",
+  "main": "src/index.js",
+  "files": [
+    "src"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "lint": "prettier --write .",
+    "test": "pnpm i -D ./ && eslint ./test/*.js"
+  },
+  "keywords": [
+    "ESLint",
+    "esm",
+    "export",
+    "filename"
+  ],
+  "author": {
+    "name": "Eric Kwoka",
+    "email": "ninjatheory@gmail.com",
+    "url": "https://thekwoka.net/"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.24.0",
+    "eslint-plugin-filename-export": "link:",
+    "prettier": "^2.7.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
