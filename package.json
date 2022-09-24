@@ -23,6 +23,11 @@
     "url": "https://thekwoka.net/"
   },
   "license": "MIT",
+  "repository": "github:ekwoka/eslint-plugin-filename-export",
+  "bugs": {
+    "url": "https://github.com/ekwoka/eslint-plugin-filename-export/issues"
+  },
+  "homepage": "https://github.com/ekwoka/eslint-plugin-filename-export",
   "devDependencies": {
     "eslint": "^8.24.0",
     "eslint-plugin-filename-export": "link:",
