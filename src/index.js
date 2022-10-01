@@ -36,6 +36,27 @@ module.exports = {
       create: function (context) {
         return {
           Program: function (node) {
+            const filename = context.getFilename();
+            const filenameSansExt = basename(
+              filename,
+              extname(filename)
+            ).toLowerCase();
+            if (
+              ['index', 'types'].includes(filenameSansExt) ||
+              /\.(test|spec|stories)$/.test(filenameSansExt)
+            )
+              return;
+            const defaultExport = node.body.find(
+              (item) => item.type === 'ExportDefaultDeclaration'
+            );
+            if (!defaultExport) return;
+            const defaultName =
+              defaultExport.declaration?.id?.name ??
+              defaultExport.declaration?.name;
+            if (!defaultName) return;
+            const isMatching = defaultName.toLowerCase() === filenameSansExt;
+            if (!isMatching)
+              context.report(node, 'Filename does not match default export');
           },
         };
       },
