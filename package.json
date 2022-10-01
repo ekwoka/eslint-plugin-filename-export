@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-filename-export",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "ESLint plugin that ensures non-index filenames match to at least one named export.",
   "main": "src/index.js",
   "files": [
