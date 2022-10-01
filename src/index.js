@@ -16,6 +16,10 @@ module.exports = {
               /\.(test|spec|stories)$/.test(filenameSansExt)
             )
               return;
+            if (
+              node.body.find((item) => item.type === 'ExportDefaultDeclaration')
+            )
+              return;
             const namedExports = node.body.filter(
               (item) => item.type === 'ExportNamedDeclaration'
             );
@@ -46,6 +50,7 @@ module.exports = {
               /\.(test|spec|stories)$/.test(filenameSansExt)
             )
               return;
+
             const defaultExport = node.body.find(
               (item) => item.type === 'ExportDefaultDeclaration'
             );
