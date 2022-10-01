@@ -1,2 +1,2 @@
-export { thisTestFails } from "./failingtest";
-export { passingTest } from "./passingTest";
+export { thisTestFails } from './failingtest';
+export { passingTest } from './passingTest';

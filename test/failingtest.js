@@ -1,3 +1,3 @@
 export const thisTestFails = () => {
-  console.log("fails");
+  console.log('fails');
 };

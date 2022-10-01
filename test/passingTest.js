@@ -1,3 +1,3 @@
 export const passingTest = () => {
-  console.log("passes");
+  console.log('passes');
 };

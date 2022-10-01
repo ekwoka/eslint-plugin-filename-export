@@ -1,5 +1,5 @@
 export default {
-  title: 'Ignore'
+  title: 'Ignore',
 };
 
 export const Primary = () => 'Ignore';

@@ -3,13 +3,14 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ["eslint:recommended"],
+  extends: ['eslint:recommended'],
   parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
+    ecmaVersion: 'latest',
+    sourceType: 'module',
   },
-  plugins: ["eslint-plugin-filename-export"],
+  plugins: ['eslint-plugin-filename-export'],
   rules: {
-    "filename-export/match-named-export": "error",
+    'filename-export/match-named-export': 'error',
+    'filename-export/match-default-export': 'error',
   },
 };
