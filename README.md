@@ -20,7 +20,8 @@ Add to your ESLint config:
 {
   "plugins": ["eslint-plugin-filename-export"],
   "rules": {
-    "filename-export/match-named-export": "error"
+    "filename-export/match-named-export": "error",
+    "filename-export/match-default-export": "error"
   }
 }
 ```
@@ -28,8 +29,9 @@ Add to your ESLint config:
 ## Rules
 
 `filename-export/match-named-export` - Enforces that the filename matches to a named export.
+`filename-export/match-default-export` - Enforces that filenames match the name of the default export.
 
-This rule ignores index files, test/spec files, and files that have no named exports.
+These rules ignore index files, test/spec files, and files that have no relevant exports by default. If you want to add additional filename exemptions, use the ESLint's builting filename overrides.
 
 ## Roadmap
 
