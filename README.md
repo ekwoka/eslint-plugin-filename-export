@@ -31,7 +31,9 @@ Add to your ESLint config:
 `filename-export/match-named-export` - Enforces that the filename matches to a named export.
 `filename-export/match-default-export` - Enforces that filenames match the name of the default export.
 
-These rules ignore index files, test/spec files, and files that have no relevant exports by default. If you want to add additional filename exemptions, use the ESLint's builting filename overrides.
+These rules ignore index files, test/spec files, and files that have no relevant exports by default. Additionally, files with a default export will be ignored by the `match-named-export` rule.
+
+If you want to add additional filename exemptions, use the ESLint's builting filename overrides.
 
 ## Roadmap
 
