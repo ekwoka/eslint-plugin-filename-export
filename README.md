@@ -39,9 +39,9 @@ If you want to add additional filename exemptions, use the ESLint's builting fil
 
 Both of these rules have the following available options:
 
-- `casing`: 
-	- `strict`: Filenames much match in case to the exports
-	- `loose`: Filenames do not need to match case (`default`)
+- `casing`:
+  - `strict`: Filenames much match in case to the exports
+  - `loose`: Filenames do not need to match case (`default`)
 
 These can be passed as a second item in an array to the rule as follows
 
