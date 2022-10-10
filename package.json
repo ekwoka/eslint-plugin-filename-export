@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/ekwoka/eslint-plugin-filename-export",
   "devDependencies": {
-    "eslint": "^8.24.0",
+    "eslint": "^8.25.0",
     "eslint-plugin-filename-export": "link:",
     "prettier": "^2.7.1"
   },
