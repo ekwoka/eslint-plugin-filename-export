@@ -3,6 +3,9 @@ const { basename, extname } = require('node:path');
 module.exports = {
   rules: {
     'match-named-export': {
+      meta: {
+        type: 'suggestion',
+      },
       create: function (context) {
         const compare = compareFunctions[context.options[0]?.casing ?? 'loose'];
         return {
@@ -33,6 +36,9 @@ module.exports = {
       },
     },
     'match-default-export': {
+      meta: {
+        type: 'suggestion',
+      },
       create: function (context) {
         const compare = compareFunctions[context.options[0]?.casing ?? 'loose'];
         return {
