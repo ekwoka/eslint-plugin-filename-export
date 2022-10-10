@@ -35,6 +35,26 @@ These rules ignore index files, test/spec files, and files that have no relevant
 
 If you want to add additional filename exemptions, use the ESLint's builting filename overrides.
 
+## Options
+
+Both of these rules have the following available options:
+
+- `casing`: 
+	- `strict`: Filenames much match in case to the exports
+	- `loose`: Filenames do not need to match case (`default`)
+
+These can be passed as a second item in an array to the rule as follows
+
+```json
+"filename-export/match-named-export": [
+	"error",
+	{
+		"casing": "strict"
+	}
+]
+
+```
+
 ## Roadmap
 
 This plugin is mainly being produced for personal use. If you are interested in using it, but need additional features, please open an issue and I will consider adding them.
