@@ -10,7 +10,7 @@ module.exports = {
   },
   plugins: ['eslint-plugin-filename-export'],
   rules: {
-    'filename-export/match-named-export': 'error',
-    'filename-export/match-default-export': 'error',
+    'filename-export/match-named-export': ['error', { casing: 'strict' }],
+    'filename-export/match-default-export': ['error', { casing: 'strict' }],
   },
 };

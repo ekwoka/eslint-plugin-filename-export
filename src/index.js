@@ -4,13 +4,11 @@ module.exports = {
   rules: {
     'match-named-export': {
       create: function (context) {
+        const compare = compareFunctions[context.options[0]?.casing ?? 'loose'];
         return {
           Program: function (node) {
             const filename = context.getFilename();
-            const filenameSansExt = basename(
-              filename,
-              extname(filename)
-            ).toLowerCase();
+            const filenameSansExt = basename(filename, extname(filename));
             if (
               ['index', 'types'].includes(filenameSansExt) ||
               /\.(test|spec|stories)$/.test(filenameSansExt)
@@ -25,10 +23,8 @@ module.exports = {
             );
             if (!namedExports.length) return;
             const matchingExport = namedExports.find((item) => {
-              const name =
-                item.declaration?.declarations?.[0]?.id?.name?.toLowerCase() ||
-                '';
-              return name === filenameSansExt;
+              const name = item.declaration?.declarations?.[0]?.id?.name ?? '';
+              return compare(name, filenameSansExt);
             });
             if (!matchingExport)
               context.report(node, 'Filename does not match any named exports');
@@ -38,13 +34,11 @@ module.exports = {
     },
     'match-default-export': {
       create: function (context) {
+        const compare = compareFunctions[context.options[0]?.casing ?? 'loose'];
         return {
           Program: function (node) {
             const filename = context.getFilename();
-            const filenameSansExt = basename(
-              filename,
-              extname(filename)
-            ).toLowerCase();
+            const filenameSansExt = basename(filename, extname(filename));
             if (
               ['index', 'types'].includes(filenameSansExt) ||
               /\.(test|spec|stories)$/.test(filenameSansExt)
@@ -59,7 +53,7 @@ module.exports = {
               defaultExport.declaration?.id?.name ??
               defaultExport.declaration?.name;
             if (!defaultName) return;
-            const isMatching = defaultName.toLowerCase() === filenameSansExt;
+            const isMatching = compare(defaultName, filenameSansExt);
             if (!isMatching)
               context.report(node, 'Filename does not match default export');
           },
@@ -67,4 +61,9 @@ module.exports = {
       },
     },
   },
+};
+
+const compareFunctions = {
+  strict: (a, b) => a === b,
+  loose: (a, b) => a.toLowerCase() === b.toLowerCase(),
 };
