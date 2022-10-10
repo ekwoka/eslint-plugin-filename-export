@@ -47,12 +47,11 @@ These can be passed as a second item in an array to the rule as follows
 
 ```json
 "filename-export/match-named-export": [
-	"error",
-	{
-		"casing": "strict"
-	}
+  "error",
+  {
+    "casing": "strict"
+  }
 ]
-
 ```
 
 ## Roadmap
