@@ -26,7 +26,7 @@ module.exports = {
             );
             if (!namedExports.length) return;
             const matchingExport = namedExports.find((item) => {
-              const name = item.declaration?.declarations?.[0]?.id?.name ?? '';
+              const name = item.declaration?.declarations?.[0]?.id?.name ?? item.declaration?.id?.name ?? "";
               return compare(name, filenameSansExt);
             });
             if (!matchingExport)
