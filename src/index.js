@@ -7,11 +7,7 @@ module.exports = {
         type: 'suggestion',
       },
       create: function (context) {
-        const transformers = [];
-        if (context.options[0]?.stripextra)
-          transformers.push((name) => name.replace(/[^a-zA-Z0-9]/g, ''));
-        if (context.options[0]?.casing === 'loose')
-          transformers.push((name) => name.toLowerCase());
+        const transformers = makeTransformers(context.options[0] ?? {});
         return {
           Program: function (node) {
             const filename = context.getFilename();
@@ -47,11 +43,7 @@ module.exports = {
         type: 'suggestion',
       },
       create: function (context) {
-        const transformers = [];
-        if (context.options[0]?.stripextra)
-          transformers.push((name) => name.replace(/[^a-zA-Z0-9]/g, ''));
-        if (context.options[0]?.casing === 'loose')
-          transformers.push((name) => name.toLowerCase());
+        const transformers = makeTransformers(context.options[0] ?? {});
         return {
           Program: function (node) {
             const filename = context.getFilename();
@@ -87,6 +79,14 @@ const compare = (names, transformers) => {
   const [name, filename] = names.map((string) =>
     transformers.reduce((acc, fn) => fn(acc), string)
   );
-  console.log({ name, filename });
   return name === filename;
+};
+
+const makeTransformers = (options) => {
+  const transformers = [];
+  if (options.stripextra)
+    transformers.push((name) => name.replace(/[^a-zA-Z0-9]/g, ''));
+  if (options.casing !== 'strict')
+    transformers.push((name) => name.toLowerCase());
+  return transformers;
 };
