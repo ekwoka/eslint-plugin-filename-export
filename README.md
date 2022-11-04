@@ -40,8 +40,13 @@ If you want to add additional filename exemptions, use the ESLint's builting fil
 Both of these rules have the following available options:
 
 - `casing`:
+
   - `strict`: Filenames much match in case to the exports
   - `loose`: Filenames do not need to match case (`default`)
+
+- `stripextra`:
+  - `true`: Filenames will be stripped of any non-alphanumeric characters (to allow filenames like `great_function.ts` to match `greatfunction`)
+  - `false`: Filenames will not be stripped of any extra characters (`default`)
 
 These can be passed as a second item in an array to the rule as follows
 
@@ -49,7 +54,8 @@ These can be passed as a second item in an array to the rule as follows
 "filename-export/match-named-export": [
   "error",
   {
-    "casing": "strict"
+    "casing": "strict",
+    "sripextra": true
   }
 ]
 ```
@@ -59,4 +65,3 @@ These can be passed as a second item in an array to the rule as follows
 This plugin is mainly being produced for personal use. If you are interested in using it, but need additional features, please open an issue and I will consider adding them.
 
 Pull requests will also be evaluated and merged as appropriate.
-
