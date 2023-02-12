@@ -11,7 +11,6 @@ module.exports = {
         return {
           Program: function (node) {
             const filename = context.getFilename();
-            if (filename.includes('NamedObject')) console.error(node);
             const filenameSansExt = basename(filename, extname(filename));
             if (
               ['index', 'types'].includes(filenameSansExt) ||
@@ -25,22 +24,10 @@ module.exports = {
             const namedExports = node.body.filter(
               (item) => item.type === 'ExportNamedDeclaration'
             );
-            if (filename.includes('NamedObject'))
-              console.error(namedExports[0].specifiers);
             if (!namedExports.length) return;
-            const matchingExport = namedExports.find((item) => {
-              const name =
-                item.declaration?.declarations?.[0]?.id?.name ??
-                item.declaration?.id?.name ??
-                item.specifiers?.find((specifier) =>
-                  compare(
-                    [specifier.exported?.name ?? '', filenameSansExt],
-                    transformers
-                  )
-                )?.exported.name ??
-                '';
-              return compare([name, filenameSansExt], transformers);
-            });
+            const matchingExport = namedExports
+              .flatMap(getExportedNames)
+              .some((name) => compare([name, filenameSansExt], transformers));
             if (!matchingExport)
               context.report(node, 'Filename does not match any named exports');
           },
@@ -84,12 +71,28 @@ module.exports = {
   },
 };
 
-const compare = (names, transformers) => {
-  const [name, filename] = names.map((string) =>
-    transformers.reduce((acc, fn) => fn(acc), string)
-  );
-  return name === filename;
+const getExportedNames = (exported) => {
+  const names = [];
+  if (exported.declaration)
+    names.push(
+      ...(exported.declaration.declarations ?? [])
+        .concat(arrayWrap(exported.declaration))
+        .map((declaration) => declaration.id?.name)
+        .filter(Boolean)
+    );
+  if (exported.specifiers)
+    names.push(
+      ...exported.specifiers.map((specifier) => specifier.exported.name)
+    );
+  return names;
 };
+
+const arrayWrap = (value) => (Array.isArray(value) ? value : [value]);
+
+const compare = (names, transformers) =>
+  names
+    .map((string) => transformers.reduce((acc, fn) => fn(acc), string))
+    .reduce((name, filename) => name === filename);
 
 const makeTransformers = (options) => {
   const transformers = [];
