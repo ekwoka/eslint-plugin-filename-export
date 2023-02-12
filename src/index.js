@@ -11,6 +11,7 @@ module.exports = {
         return {
           Program: function (node) {
             const filename = context.getFilename();
+            if (filename.includes('NamedObject')) console.error(node);
             const filenameSansExt = basename(filename, extname(filename));
             if (
               ['index', 'types'].includes(filenameSansExt) ||
@@ -24,11 +25,19 @@ module.exports = {
             const namedExports = node.body.filter(
               (item) => item.type === 'ExportNamedDeclaration'
             );
+            if (filename.includes('NamedObject'))
+              console.error(namedExports[0].specifiers);
             if (!namedExports.length) return;
             const matchingExport = namedExports.find((item) => {
               const name =
                 item.declaration?.declarations?.[0]?.id?.name ??
                 item.declaration?.id?.name ??
+                item.specifiers?.find((specifier) =>
+                  compare(
+                    [specifier.exported?.name ?? '', filenameSansExt],
+                    transformers
+                  )
+                )?.exported.name ??
                 '';
               return compare([name, filenameSansExt], transformers);
             });
