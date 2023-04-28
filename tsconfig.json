@@ -1,0 +1,17 @@
+{
+  // Change this to match your project
+  "include": ["src/**/*.js"],
+  "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"],
+  "compilerOptions": {
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "module": "es2022",
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "esNext"
+  }
+}

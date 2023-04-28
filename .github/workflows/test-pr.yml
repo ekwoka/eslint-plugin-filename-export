@@ -1,0 +1,57 @@
+name: Perform Tests
+
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  Test-PR:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - uses: pnpm/action-setup@v2.2.4
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: latest
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+          pnpm store path
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: |
+            ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+            node_modules
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Install Dependencies
+        run: pnpm i
+
+      - name: Lint
+        run: pnpm run lint:check
+
+      - name: Typecheck
+        run: pnpm exec tsc
+
+      - name: Run Tests
+        env:
+          SHOPIFY_ADMIN_TOKEN: ${{ secrets.SHOPIFY_ADMIN_TOKEN }}
+          SHOPIFY_API_KEY: ${{ secrets.SHOPIFY_API_KEY }}
+          SHOPIFY_API_SECRET: ${{ secrets.SHOPIFY_API_SECRET }}
+          SHOPIFY_API_VERSION: ${{ vars.SHOPIFY_API_VERSION }}
+          SHOPIFY_STORE_HANDLE: ${{ vars.SHOPIFY_STORE_HANDLE }}
+          CIPHER_SECRET: ${{ vars.CIPHER_SECRET }}
+        run: pnpm run test
