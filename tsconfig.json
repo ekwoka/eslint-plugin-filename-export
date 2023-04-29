@@ -12,6 +12,6 @@
     "outDir": "dist",
     "skipLibCheck": true,
     "strict": true,
-    "target": "esNext"
+    "target": "ES2017"
   }
 }

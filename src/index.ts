@@ -6,20 +6,13 @@ import {
 
 import { basename, extname } from 'node:path';
 
+import { DefaultMessageIds, NamedMessageIds, Options } from './types';
+
 const createRule = ESLintUtils.RuleCreator(
   () => 'https://github.com/ekwoka/eslint-plugin-filename-export'
 );
 
-export type NamedMessageIds = 'noMatchingExport';
-export type DefaultMessageIds = 'defaultExportDoesNotMatch';
-export type Options = [
-  {
-    stripextra?: boolean;
-    casing?: 'strict' | 'loose';
-  }
-];
-
-export default {
+export = {
   rules: {
     'match-named-export': createRule<Options, NamedMessageIds>({
       name: 'match-named-export',
