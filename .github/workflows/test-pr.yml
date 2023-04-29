@@ -1,6 +1,9 @@
 name: Perform Tests
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
@@ -47,11 +50,4 @@ jobs:
         run: pnpm exec tsc
 
       - name: Run Tests
-        env:
-          SHOPIFY_ADMIN_TOKEN: ${{ secrets.SHOPIFY_ADMIN_TOKEN }}
-          SHOPIFY_API_KEY: ${{ secrets.SHOPIFY_API_KEY }}
-          SHOPIFY_API_SECRET: ${{ secrets.SHOPIFY_API_SECRET }}
-          SHOPIFY_API_VERSION: ${{ vars.SHOPIFY_API_VERSION }}
-          SHOPIFY_STORE_HANDLE: ${{ vars.SHOPIFY_STORE_HANDLE }}
-          CIPHER_SECRET: ${{ vars.CIPHER_SECRET }}
-        run: pnpm run test
+        run: pnpm run test --run --reporter=verbose
