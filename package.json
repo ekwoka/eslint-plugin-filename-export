@@ -7,7 +7,6 @@
     "dist",
     "src"
   ],
-  "type": "module",
   "sideEffects": false,
   "scripts": {
     "build": "tsc",
