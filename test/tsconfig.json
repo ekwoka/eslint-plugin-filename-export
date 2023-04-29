@@ -1,0 +1,12 @@
+{
+  "include": ["**/*.ts"],
+  "compilerOptions": {
+    "types": ["vitest/globals"],
+    "esModuleInterop": true,
+    "module": "es2022",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "esNext"
+  }
+}

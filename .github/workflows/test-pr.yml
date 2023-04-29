@@ -1,22 +1,18 @@
-name: Publish to NPM
+name: Perform Tests
+
 on:
-  push:
-    paths:
-      - 'package.json'
+  pull_request:
     branches:
       - main
 jobs:
-  Build-Publish:
+  Test-PR:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup Node
+      - uses: actions/checkout@v3
+      - name: Install Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
-          always-auth: true
 
       - uses: pnpm/action-setup@v2.2.4
         name: Install pnpm
@@ -47,16 +43,8 @@ jobs:
       - name: Lint
         run: pnpm run lint:check
 
-      - name: Run Tests
-        run: pnpm run test --run --reporter=verbose
-
-      - name: Build
+      - name: Typecheck
         run: pnpm exec tsc
 
-      - name: SetupAuth
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-
-      - name: Publish package on NPM 📦
-        run: pnpm publish -r
-        env:
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Run Tests
+        run: pnpm run test --run --reporter=verbose

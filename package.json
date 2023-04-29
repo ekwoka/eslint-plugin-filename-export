@@ -2,14 +2,24 @@
   "name": "eslint-plugin-filename-export",
   "version": "0.5.1",
   "description": "ESLint plugin that ensures non-index filenames match to at least one named export.",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "files": [
+    "dist",
     "src"
   ],
+  "type": "module",
   "sideEffects": false,
   "scripts": {
-    "lint": "prettier --write .",
-    "test": "pnpm i -D ./ && eslint ./test/* --ext .js --ext .ts --ext .tsx"
+    "build": "tsc",
+    "coverage": "vitest run --coverage",
+    "lint": "eslint --fix ./src; prettier --write ./src --loglevel error",
+    "lint:check": "eslint --max-warnings 10 ./src && prettier --check ./src",
+    "prebuild": "rm -rf dist",
+    "prepare": "husky install",
+    "size": "node scripts/esbuild.js",
+    "test": "vitest",
+    "test:run": "vitest --run",
+    "test:verbose": "vitest --reporter=verbose"
   },
   "keywords": [
     "ESLint",
@@ -28,16 +38,56 @@
     "url": "https://github.com/ekwoka/eslint-plugin-filename-export/issues"
   },
   "homepage": "https://github.com/ekwoka/eslint-plugin-filename-export",
+  "dependencies": {
+    "@typescript-eslint/utils": "^5.59.1"
+  },
   "devDependencies": {
-    "eslint": "^8.26.0",
-    "eslint-plugin-filename-export": "link:",
-    "prettier": "^2.7.1"
+    "@trivago/prettier-plugin-sort-imports": "4.1.1",
+    "@types/node": "18.16.3",
+    "@typescript-eslint/eslint-plugin": "5.59.1",
+    "@typescript-eslint/parser": "5.59.1",
+    "@vitest/coverage-c8": "0.30.1",
+    "esbuild": "0.17.18",
+    "eslint": "8.39.0",
+    "eslint-plugin-filename-export": "0.5.1",
+    "husky": "8.0.3",
+    "lint-staged": "13.2.2",
+    "prettier": "2.8.8",
+    "typescript": "5.0.4",
+    "vite": "4.3.3",
+    "vite-tsconfig-paths": "4.2.0",
+    "vitest": "0.30.1"
   },
   "publishConfig": {
     "access": "public"
   },
   "prettier": {
     "singleQuote": true,
-    "bracketSameLine": true
+    "bracketSameLine": true,
+    "plugins": [
+      "@trivago/prettier-plugin-sort-imports"
+    ],
+    "importOrder": [
+      "node:.*",
+      "@/lib(.*)$",
+      "@/utils(.*)$",
+      "^[./]"
+    ],
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true
+  },
+  "lint-staged": {
+    "*.{js,ts,mjs}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.json": [
+      "prettier --write"
+    ]
+  },
+  "pnpm": {
+    "overrides": {
+      "typescript@<5.0.4": "^5.0.4"
+    }
   }
 }

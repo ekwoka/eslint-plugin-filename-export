@@ -1,0 +1,17 @@
+{
+  "include": ["src/**/*.ts"],
+  "compilerOptions": {
+    "types": ["vitest/globals"],
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "module": "es2022",
+    "moduleResolution": "node",
+    "sourceRoot": "src",
+    "outDir": "dist",
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "esNext"
+  }
+}
