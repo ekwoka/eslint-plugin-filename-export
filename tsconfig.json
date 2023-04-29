@@ -6,7 +6,7 @@
     "declarationMap": true,
     "sourceMap": true,
     "esModuleInterop": true,
-    "module": "es2022",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "sourceRoot": "src",
     "outDir": "dist",
