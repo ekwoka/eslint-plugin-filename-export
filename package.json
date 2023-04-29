@@ -4,7 +4,8 @@
   "description": "ESLint plugin that ensures non-index filenames match to at least one named export.",
   "main": "dist/index.js",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "type": "module",
   "sideEffects": false,

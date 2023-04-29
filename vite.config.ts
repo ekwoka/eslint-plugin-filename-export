@@ -8,9 +8,6 @@ export default defineConfig({
   define: {
     'import.meta.vitest': 'undefined',
   },
-  build: {
-    outDir: '../dist',
-  },
   test: {
     root: './',
     globals: true,
