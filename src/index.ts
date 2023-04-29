@@ -10,9 +10,9 @@ const createRule = ESLintUtils.RuleCreator(
   () => 'https://github.com/ekwoka/eslint-plugin-filename-export'
 );
 
-type NamedMessageIds = 'noMatchingExport';
-type DefaultMessageIds = 'defaultExportDoesNotMatch';
-type Options = [
+export type NamedMessageIds = 'noMatchingExport';
+export type DefaultMessageIds = 'defaultExportDoesNotMatch';
+export type Options = [
   {
     stripextra?: boolean;
     casing?: 'strict' | 'loose';
@@ -38,7 +38,19 @@ export default {
           noMatchingExport: 'Filename does not match any named exports',
         },
         type: 'suggestion',
-        schema: [],
+        schema: [
+          {
+            type: 'object',
+            properties: {
+              stripextra: {
+                type: 'boolean',
+              },
+              casing: {
+                enum: ['strict', 'loose'],
+              },
+            },
+          },
+        ],
       },
       create(context) {
         const transformers = makeTransformers(context.options[0] ?? {});
@@ -93,7 +105,19 @@ export default {
             'Filename does not match the default export',
         },
         type: 'suggestion',
-        schema: [],
+        schema: [
+          {
+            type: 'object',
+            properties: {
+              stripextra: {
+                type: 'boolean',
+              },
+              casing: {
+                enum: ['strict', 'loose'],
+              },
+            },
+          },
+        ],
       },
       create(context) {
         const transformers = makeTransformers(context.options[0] ?? {});

@@ -17,7 +17,9 @@
     "prebuild": "rm -rf dist",
     "prepare": "husky install",
     "size": "node scripts/esbuild.js",
-    "test": "vitest"
+    "test": "vitest",
+    "test:run": "vitest --run",
+    "test:verbose": "vitest --reporter=verbose"
   },
   "keywords": [
     "ESLint",
