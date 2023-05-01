@@ -60,3 +60,6 @@ jobs:
         run: pnpm publish -r
         env:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Prune PNPM Cache
+        run: pnpm store prune
