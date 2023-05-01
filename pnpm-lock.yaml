@@ -5,7 +5,7 @@ overrides:
 
 dependencies:
   '@typescript-eslint/utils':
-    specifier: ^5.59.1
+    specifier: 5.59.1
     version: 5.59.1(eslint@8.39.0)(typescript@5.0.4)
 
 devDependencies:
@@ -32,7 +32,7 @@ devDependencies:
     version: 8.39.0
   eslint-plugin-filename-export:
     specifier: 1.0.3
-    version: 1.0.3(eslint@8.39.0)(typescript@5.0.4)
+    version: 'link:'
   husky:
     specifier: 8.0.3
     version: 8.0.3
@@ -1052,16 +1052,6 @@ packages:
   /escape-string-regexp@4.0.0:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
-
-  /eslint-plugin-filename-export@1.0.3(eslint@8.39.0)(typescript@5.0.4):
-    resolution: {integrity: sha512-Emr/IoMTn32wBEN3sRacmvFxC0lSfK+ujJ8b9FuarumppPD/W6hLbTF3dabkjagShrxC30EyUitAs7lQGLqKYA==}
-    dependencies:
-      '@typescript-eslint/utils': 5.59.1(eslint@8.39.0)(typescript@5.0.4)
-    transitivePeerDependencies:
-      - eslint
-      - supports-color
-      - typescript
-    dev: true
 
   /eslint-scope@5.1.1:
     resolution: {integrity: sha512-2NxwbF/hZ0KpepYN0cNbo+FN6XoK7GaHlQhgx/hIZl6Va0bF45RQOOwhLIy8lQDbuCiadSLCBnH2CFYquit5bw==}
