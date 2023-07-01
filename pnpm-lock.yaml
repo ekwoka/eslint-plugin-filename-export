@@ -9,7 +9,7 @@ overrides:
 
 dependencies:
   '@typescript-eslint/utils':
-    specifier: ^5.52.0
+    specifier: 5.52.0
     version: 5.52.0(eslint@8.43.0)(typescript@5.1.5)
 
 devDependencies:
