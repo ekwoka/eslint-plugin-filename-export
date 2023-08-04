@@ -4,5 +4,5 @@ export type Options = [
   {
     stripextra?: boolean;
     casing?: 'strict' | 'loose';
-  }
+  },
 ];
