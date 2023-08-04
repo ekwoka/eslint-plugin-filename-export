@@ -9,7 +9,7 @@ import { basename, extname } from 'node:path';
 import { DefaultMessageIds, NamedMessageIds, Options } from './types';
 
 const createRule = ESLintUtils.RuleCreator(
-  () => 'https://github.com/ekwoka/eslint-plugin-filename-export'
+  () => 'https://github.com/ekwoka/eslint-plugin-filename-export',
 );
 
 export = {
@@ -58,14 +58,14 @@ export = {
               return;
             if (
               node.body.find(
-                (item) => item.type === AST_NODE_TYPES.ExportDefaultDeclaration
+                (item) => item.type === AST_NODE_TYPES.ExportDefaultDeclaration,
               )
             )
               return;
             const namedExports =
               node.body.filter<TSESTree.ExportNamedDeclaration>(
                 (item): item is TSESTree.ExportNamedDeclaration =>
-                  item.type === AST_NODE_TYPES.ExportNamedDeclaration
+                  item.type === AST_NODE_TYPES.ExportNamedDeclaration,
               );
             if (!namedExports.length) return;
             const matchingExport = namedExports
@@ -126,7 +126,7 @@ export = {
 
             const defaultExport = node.body.find(
               (item): item is TSESTree.ExportDefaultDeclaration =>
-                item.type === AST_NODE_TYPES.ExportDefaultDeclaration
+                item.type === AST_NODE_TYPES.ExportDefaultDeclaration,
             );
             if (!defaultExport) return;
             const declaration = defaultExport.declaration;
@@ -135,7 +135,7 @@ export = {
             if (!defaultName) return;
             const isMatching = compare(
               [defaultName, filenameSansExt],
-              transformers
+              transformers,
             );
             if (!isMatching)
               context.report({
@@ -150,7 +150,7 @@ export = {
 };
 
 const getName = (
-  exported: TSESTree.ExportDeclaration | TSESTree.VariableDeclarator
+  exported: TSESTree.ExportDeclaration | TSESTree.VariableDeclarator,
 ): string | null => {
   if ('name' in exported) return exported.name;
   if ('id' in exported && exported.id)
@@ -167,25 +167,25 @@ const getExportedNames = (exported: TSESTree.ExportNamedDeclaration) => {
 };
 
 const getNamesFromDeclarations = (
-  declaration: TSESTree.NamedExportDeclarations
+  declaration: TSESTree.NamedExportDeclarations,
 ): string[] => {
   if ('declarations' in declaration && declaration.declarations)
     return declaration.declarations.map(
-      (declaration) => getName(declaration) ?? ''
+      (declaration) => getName(declaration) ?? '',
     );
   return [getName(declaration) ?? ''];
 };
 
 const getNamesFromSpecifiers = (
-  specifiers: TSESTree.ExportSpecifier[]
+  specifiers: TSESTree.ExportSpecifier[],
 ): string[] => specifiers.map((specifier) => specifier.exported.name);
 
 const compare = (
   names: string[],
-  transformers: ((name: string) => string)[]
+  transformers: ((name: string) => string)[],
 ) => {
   const [name, filename] = names.map((string) =>
-    transformers.reduce((acc, fn) => fn(acc), string)
+    transformers.reduce((acc, fn) => fn(acc), string),
   );
   return name === filename;
 };
