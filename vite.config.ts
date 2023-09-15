@@ -12,10 +12,6 @@ export default defineConfig({
     root: './',
     globals: true,
     includeSource: [],
-    coverage: {
-      provider: 'c8',
-      reporter: ['text-summary', 'text', 'html'],
-    },
     reporters: ['dot'],
     deps: {},
   },
