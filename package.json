@@ -44,21 +44,21 @@
     "eslint": "^6.0.0 || ^7.0.0 || >=8.0.0"
   },
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "4.2.0",
-    "@types/node": "20.7.1",
-    "@typescript-eslint/eslint-plugin": "6.7.3",
-    "@typescript-eslint/parser": "6.7.3",
+    "@trivago/prettier-plugin-sort-imports": "4.2.1",
+    "@types/node": "20.8.9",
+    "@typescript-eslint/eslint-plugin": "6.9.0",
+    "@typescript-eslint/parser": "6.9.0",
     "@vitest/coverage-c8": "0.33.0",
-    "esbuild": "0.19.4",
-    "eslint": "8.50.0",
+    "esbuild": "0.19.5",
+    "eslint": "8.52.0",
     "eslint-plugin-filename-export": "1.0.4",
     "husky": "8.0.3",
     "lint-staged": "14.0.1",
     "prettier": "3.0.3",
     "typescript": "5.2.2",
-    "vite": "4.4.9",
+    "vite": "4.5.0",
     "vite-tsconfig-paths": "4.2.1",
-    "vitest": "0.34.5"
+    "vitest": "0.34.6"
   },
   "publishConfig": {
     "access": "public"
