@@ -38,10 +38,10 @@
   },
   "homepage": "https://github.com/ekwoka/eslint-plugin-filename-export",
   "dependencies": {
-    "@typescript-eslint/utils": "^5.52.0"
+    "@typescript-eslint/utils": "5.52.0"
   },
   "peerDependencies": {
-    "eslint": "^6.0.0 || ^7.0.0 || >=8.0.0"
+    "eslint": "9.2.0"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "4.3.0",
