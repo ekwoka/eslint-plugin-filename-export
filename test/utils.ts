@@ -1,6 +1,7 @@
 import { ESLintUtils } from '@typescript-eslint/utils';
 
-import plugin, { DefaultMessageIds, NamedMessageIds } from '../src';
+import plugin from '../src';
+import { DefaultMessageIds, NamedMessageIds } from '../src/types';
 
 export const ruleTester = new ESLintUtils.RuleTester({
   parser: '@typescript-eslint/parser',
