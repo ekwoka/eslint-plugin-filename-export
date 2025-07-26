@@ -20,7 +20,7 @@ export const WhileStrippingExtra = [
 ] as const;
 
 export const messageId = <T extends NamedMessageIds | DefaultMessageIds>(
-  messageId: T
+  messageId: T,
 ) => [
   {
     messageId,
