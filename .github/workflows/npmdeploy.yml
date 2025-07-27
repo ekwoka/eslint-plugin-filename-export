@@ -9,42 +9,22 @@ jobs:
   Build-Publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          always-auth: true
+      - uses: actions/checkout@v4
 
       - uses: pnpm/action-setup@v4.0.0
         name: Install pnpm
         id: pnpm-install
         with:
           version: latest
+          standalone: true
           run_install: false
 
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        run: |
-          pnpm store path
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-      - uses: actions/cache@v4
-        name: Setup pnpm cache
-        with:
-          path: |
-            ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-            node_modules
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
 
       - name: Install Dependencies
+        shell: bash
         run: pnpm i
 
-      - name: Build
+      - name: Typecheck
         run: pnpm exec tsc
 
       - name: Lint
