@@ -25,7 +25,6 @@ export = {
       meta: {
         docs: {
           description: 'Enforce filename matches named export',
-          recommended: 'error',
         },
         messages: {
           noMatchingExport: 'Filename does not match any named exports',
@@ -40,6 +39,7 @@ export = {
               },
               casing: {
                 enum: ['strict', 'loose'],
+                type: 'string',
               },
             },
           },
@@ -91,7 +91,6 @@ export = {
       meta: {
         docs: {
           description: 'Enforce filename matches named export',
-          recommended: 'error',
         },
         messages: {
           defaultExportDoesNotMatch:
@@ -107,6 +106,7 @@ export = {
               },
               casing: {
                 enum: ['strict', 'loose'],
+                type: 'string',
               },
             },
           },
@@ -178,7 +178,11 @@ const getNamesFromDeclarations = (
 
 const getNamesFromSpecifiers = (
   specifiers: TSESTree.ExportSpecifier[],
-): string[] => specifiers.map((specifier) => specifier.exported.name);
+): string[] =>
+  specifiers.map((specifier) => {
+    if ('name' in specifier.exported) return specifier.exported.name;
+    return specifier.exported.value;
+  });
 
 const compare = (
   names: string[],
