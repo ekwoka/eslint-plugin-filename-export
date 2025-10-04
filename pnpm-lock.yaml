@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@typescript-eslint/utils':
-        specifier: ^8.38.0
+        specifier: 8.38.0
         version: 8.38.0(eslint@8.57.1)(typescript@5.9.2)
     devDependencies:
       '@trivago/prettier-plugin-sort-imports':
@@ -2057,8 +2057,8 @@ snapshots:
 
   '@typescript-eslint/project-service@8.38.0(typescript@5.9.2)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.38.0(typescript@5.9.2)
-      '@typescript-eslint/types': 8.38.0
+      '@typescript-eslint/tsconfig-utils': 8.44.1(typescript@5.9.2)
+      '@typescript-eslint/types': 8.44.1
       debug: 4.4.1
       typescript: 5.9.2
     transitivePeerDependencies:
