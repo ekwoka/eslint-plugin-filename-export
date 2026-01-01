@@ -48,7 +48,7 @@
     "@types/node": "20.19.27",
     "@typescript-eslint/eslint-plugin": "6.21.0",
     "@typescript-eslint/parser": "6.21.0",
-    "@typescript-eslint/rule-tester": "8.50.1",
+    "@typescript-eslint/rule-tester": "8.51.0",
     "@vitest/coverage-c8": "0.33.0",
     "esbuild": "0.27.2",
     "eslint": "8.57.1",
